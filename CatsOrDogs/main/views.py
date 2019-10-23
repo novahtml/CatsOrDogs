@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from .forms import FileUploadForm
 
-from .data.functions import dog_cat_predict
+from .data.result import dog_cat_predict
 
 def index(request):
     return render(request, 'main/mainForm.html')
