@@ -4,7 +4,7 @@ import tensorflow as tf
 
 
 def dog_cat_predict(image_file):
-  model = tf.keras.models.load_model('dogs_cats.h5')
+  model = tf.keras.models.load_model('model2.h5')
   label_names = ["cat", "dog"]
 
   img = keras.preprocessing.image.load_img(image_file, target_size=(128, 128))
