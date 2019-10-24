@@ -22,7 +22,7 @@
 <script type="text/javascript" src="{% static 'js/selectingFiles.js' %}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
- 
+ <!--
  <script type="text/javascript">
 function upload(event) {
 event.preventDefault();
@@ -48,17 +48,21 @@ $(function() {
 
 
 </script>
-
+-->
 <body>
 <div class="CenterBlock">
-<!--{% csrf_token %}-->
+
 <form action="/upload/" method="post" id="file-upload-form" enctype="multipart/form-data"> 
-   
-    <p><input type="file" accept="image/*,image/jpeg"/></p><br />
+{% csrf_token %} 
+    {{form}}  
     <div id="output">
     </div>
     <p><button type="submit" class="btn btn-primary" id='upload-btn'>Проверить</button></p>
 </form>
+
+{% if resultCatOrDog != None %}
+    {{resultCatOrDog}}
+{% endif %}
 
 </div>
 </body>

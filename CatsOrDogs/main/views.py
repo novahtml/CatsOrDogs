@@ -1,25 +1,29 @@
 from django.shortcuts import render
 
-from .forms import FileUploadForm
+from .forms import UploadFileForm
 
 from .data.result import dog_cat_predict
 
+from .functions import handle_uploaded_file
+
+
 def index(request):
-    return render(request, 'main/mainForm.html')
+	form = UploadFileForm()
+	return render(request, 'main/mainForm.html',{'form':form})
 
 def add_image(request):
 	return
 
-
-
 def upload_view(request):
 	if request.method == 'POST':
-		resultCatOrDog = '123'
-		form = FileUploadForm(data=request.POST, files=request.FILES)
+		resultCatOrDog = None
+		form = UploadFileForm(data=request.POST, files=request.FILES)
 		if form.is_valid():
-			resultCatOrDog1 = dog_cat_predict('static/image/dog_test.jpg')
-			resultCatOrDog = '123'
+			image_adres = handle_uploaded_file(request.FILES)
+			resultCatOrDog = dog_cat_predict(request.FILES['file'].name)
 		else:
 			print ('invalid form')
 			print (form.errors)
-	return render(request, 'main/mainForm.html', {'resultCatOrDog':resultCatOrDog})
+			resultCatOrDog = 'ошибка'
+			form = UploadFileForm()
+	return render(request, 'main/mainForm.html', {'resultCatOrDog':resultCatOrDog,'form':form})
