@@ -9,7 +9,7 @@ from .functions import handle_uploaded_file
 
 def index(request):
 	form = UploadFileForm()
-	return render(request, 'main\\mainForm.html',{'form':form})
+	return render(request, 'main/mainForm.html',{'form':form})
 
 def upload_view(request):
 	if request.method == 'POST':
