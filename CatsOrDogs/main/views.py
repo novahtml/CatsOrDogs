@@ -11,9 +11,6 @@ def index(request):
 	form = UploadFileForm()
 	return render(request, 'main/mainForm.html',{'form':form})
 
-def add_image(request):
-	return
-
 def upload_view(request):
 	if request.method == 'POST':
 		resultCatOrDog = None
